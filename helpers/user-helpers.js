@@ -3,7 +3,7 @@ var collection = require('../config/collection')
 var promise=require('promise')
 const bcrypt = require('bcrypt')
 const collections = require('../config/collection')
-const { resolve } = require('promise')
+const { resolve, reject } = require('promise')
 var objectId = require('mongodb').ObjectID
 module.exports={
     doSignup:(userData)=>{
@@ -89,6 +89,16 @@ module.exports={
                 }
             ]).toArray()
             resolve(cartItems[0].cartItems)
+        })
+    },
+    getCartCount:(userId)=>{
+        return new promise(async(resolve,reject)=>{
+            let count=0
+            let cart= await db.get().collection(collection.CART_COLLECTION).findOne({user:objectId(userId)})
+            if(cart){
+                count=cart.products.length
+            }
+            resolve(count)
         })
     }
 }
