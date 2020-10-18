@@ -12,13 +12,13 @@ module.exports = {
         })
     },
     getAllProducts: () => {
-        return new promise(async (resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             let products = await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
             resolve(products)
         })
     },
     deleteProduct: (proId) => {
-        return new promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             console.log(proId);
             console.log(objectId(proId));
             db.get().collection(collection.PRODUCT_COLLECTION).removeOne({ _id: objectId(proId) }).then((response) => {
@@ -28,14 +28,14 @@ module.exports = {
         })
     },
     getProductDetails:(proId)=>{
-        return new promise((resolve,reject)=>{
+        return new Promise((resolve,reject)=>{
             db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(proId)}).then((product)=>{
                 resolve(product)
             })
         })
     },
     updateProduct:(proId,productDetails)=>{
-        return new promise((resolve,reject)=>{
+        return new Promise((resolve,reject)=>{
             db.get().collection(collection.PRODUCT_COLLECTION)
             .updateOne({_id:objectId(proId)},{
                 $set:{

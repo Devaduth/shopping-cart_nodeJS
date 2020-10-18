@@ -13,14 +13,15 @@
             <tbody>
                 {{#each products}}
                     <tr>
-                        {{#each this.products}}
-                        <td><img src="/product_images/{{this._id}}.jpg" style="width: 70px; height:70px" alt=""></td>
-                        <td>{{this.Name}}</td>
-                        {{/each}}
+                       
+                        <td><img src="/product_images/{{this.product._id}}.jpg" style="width: 70px; height:70px" alt=""></td>
+                        <td>{{this.product.Name}}</td>
+                        <td>{{this.product.Price}}</td>
+
                         <td>
-                            <button class="cart-item-count mr-2 btn btn-primary">-</button>
-                            {{this.quantity}}
-                            <button class="cart=items-count ml-2 btn btn-primary">+</button>
+                            <button class="cart-item-count mt-2  btn btn-primary" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)">-</button>
+                            <span id="{{this.product._id}}">{{this.quantity}}</span>
+                            <button class="cart=items-count mt-2  btn btn-primary" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)">+</button>
                         </td>
                         <td>
                             <a href="" class="btn btn-danger">X</a>
@@ -30,5 +31,35 @@
                 {{/each}}
             </tbody>
         </table>
+        <hr>
+        <div class="float-right pr-5">
+            <h5 class="mt-4 mr-4 float-right">Cart Total: Rs.{{total}}</h5>
+        <a href="/place-order" class="btn btn-success  mt-3" style="width: 100%;"><b>Place Order</b></a>
+        </div>
     </div>
 </section>
+<script>
+    function changeQuantity(cartId,proId,count){
+        let quantity=parseInt(document.getElementById(proId).innerHTML)
+        count=parseInt(count)
+
+        $.ajax({
+            url:'/change-product-quantity',
+            data:{
+                cart:cartId,
+                product:proId,
+                count:count,
+                quantity:quantity
+            },
+            method:'post',
+            success:(response)=>{
+                if(response.removeProduct){
+                    alert("Product removed successfully")
+                    location.reload()
+                }else{
+                    document.getElementById(proId).innerHTML=quantity+count
+                }
+            }
+        })
+    }    
+</script>
