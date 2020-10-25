@@ -1,28 +1,24 @@
- <section>
-            <div class="container mt-5">
-                <div class="row">
-                    {{#each products}}
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            {{#each products}}
 
 
-                    <div class="col-md-3 p-3 pt-3">
-                        <div class="card" style="width: 15rem; height:24rem">
-                            <img class="card-img-top"
-                                src="/product_images/{{this._id}}.jpg"
-                                alt="Card image cap"
-                                style="height:15rem; width:15rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">{{this.Name}}</h5>
-                                <p class="card-text">Rs.{{this.Price}}</p>
-                                <p class="card-text"> {{this.Description}}</p>
-                                <button onclick="addToCart('{{this._id}}')" class="btn btn-primary">Add to cart</button>
-                            </div>
-                        </div>
+            <div class="col-md-3 p-3 pt-3">
+                <div class="card" style="width: 15rem; height:28rem">
+                    <img class="card-img-top" src="/product_images/{{this._id}}.jpg" alt="Card image cap"
+                        style="height:15rem; width:15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.Name}}</h5>
+                        <p class="card-text">Rs.{{this.Price}}</p>
+                        <p class="card-text"> {{this.Description}}</p>
+                        <button onclick="addToCart('{{this._id}}')" class="btn btn-primary ">Add to cart</button>
+                        <button onclick="" class="btn btn-success">Buy now</button>
                     </div>
-
-                    {{/each}}
                 </div>
             </div>
-        </section>
 
-   
-     
+            {{/each}}
+        </div>
+    </div>
+</section>

@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
     "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -14,10 +15,12 @@
     "express-handlebars": "^5.1.0",
     "express-hbs": "^2.3.4",
     "express-session": "^1.17.1",
-    "hbs": "~4.0.4",
+    "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
     "mongodb": "^3.6.2",
     "morgan": "~1.9.1",
-    "promise": "^8.1.0"
+    "nodemon": "^2.0.6",
+    "promise": "^8.1.0",
+    "razorpay": "^2.0.6"
   }
 }
