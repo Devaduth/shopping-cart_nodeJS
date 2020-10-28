@@ -53,5 +53,13 @@ module.exports = {
                 resolve()
             })
         })
-    }
+    },
+    getAllUser: () => {
+        return new Promise(async (resolve, reject) => {
+            let users = await db.get().collection(collection.USER_COLLECTION).find()
+            console.log(users);
+            resolve(users)
+        })
+    },
+    
 }
